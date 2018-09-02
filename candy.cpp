@@ -36,21 +36,64 @@ void printBoard(){
 }
 
 void printBoard(int row, int column){
+	int borderColor;
 	for(int i = 0; i < rows; i++){
+
 		for(int j = 0; j < columns; j++){
+
+			if(i == row && column == j){
+				borderColor = 15;
+			}else{
+				borderColor = 0;
+			}
+			textcolor(borderColor);
+			printf("%c%c%c%c", 201, 205, 205, 187);
+		}
+		printf("\n");
+		for(int j = 0; j < columns; j++){
+
+			if(i == row && column == j){
+				borderColor = 15;
+			}else{
+				borderColor = 0;
+			}
+			textcolor(borderColor);
+			printf("%c", 186);
+			textcolor(board[i][j]);
+			printf("%c%c",219, 219);
+			textcolor(borderColor);
+			printf("%c", 186);
+		}
+		printf("\n");
+		for(int j = 0; j < columns; j++){
+
+			if(i == row && column == j){
+				borderColor = 15;
+			}else{
+				borderColor = 0;
+			}
+			textcolor(borderColor);
+			printf("%c%c%c%c", 200, 205, 205, 188);
+		}
+		printf("\n");
+		/*for(int j = 0; j < columns; j++){
 			textcolor(board[i][j]);
 			if(i == row && column == j){
-				textcolor(14);
+				//textcolor(14);
+				printf("%c%c", 178, 178);
+			}else{
+				printf("%c%c", 177, 177);
 			}
 			//printf("%d", board[i][j]);
 			
-			printf("%c", 254);
+			//printf("%c", 254);
+			//printf("%c%c", 178, 178);
 			if(j != columns - 1){
 			
 				printf(" ");
 			}
 		}
-		printf("\n");	
+		printf("\n\n");	*/
 	}
 }
 
@@ -144,8 +187,7 @@ void checkColumn(int column){
 }
 
 void checkColumns(){
-	for (int i = 0; i < columns; ++i)
-	{
+	for (int i = 0; i < columns; ++i){
 		checkColumn(i);
 	}
 }
@@ -363,6 +405,26 @@ int main(){
 	d = 100
 	enter = 13
 	backspace = 8
+	╔ = 201
+	═ = 205
+	╗ = 187
+	║ = 186
+	╝ = 188
+	╚ = 200
+	█ = 219
+	╔═══╗
+	║███║
+	║███║
+	╚═══╝
+	▓▓▓	
+	╔═══╗
+	║╔═╗║
+	║╚═╝║
+	╚═══╝
+
+	╔══╗
+	║██║
+	╚══╝
 	*/
 
 	

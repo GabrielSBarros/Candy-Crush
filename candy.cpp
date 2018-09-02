@@ -205,11 +205,21 @@ void removeColumn(int column){
 	}		
 }
 
+void remove(){
+	Coord c;
+	while(!toRemove.empty()){
+		c = toRemove.front();
+		toRemove.pop();		
+		board[c.Row][c.Column] = 12;
+	}
+
+}
+
 void switchItens(int row1, int column1){
 	int row2 = row1;
 	int column2 = column1;
 	int selection = 0;
-	while(selection != 93){ //Enter
+	while(selection != 93){ //]
 		selection = getch();
 		switch(selection){
 			case 97: //A
@@ -242,17 +252,14 @@ void switchItens(int row1, int column1){
 	board[row1][column1] = board[row2][column2];
 	board[row2][column2] = aux;
 
-}
-
-void remove(){
-	Coord c;
-	while(!toRemove.empty()){
-		c = toRemove.front();
-		toRemove.pop();		
-		board[c.Row][c.Column] = 0;
-	}
+	checkColumns();
+	//checkRows();
+	remove();
+	verifyGravity();
 
 }
+
+
 
 void game(int row, int column){
 	clrscr();
@@ -295,10 +302,7 @@ void game(int row, int column){
 			break;
 			case 93: //]
 				switchItens(row, column);
-				checkColumns();
-				checkRows();
-				remove();
-				verifyGravity();
+				
 			break;
 		}
 		

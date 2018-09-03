@@ -104,21 +104,37 @@ void gravity(int row, int column) {
 	while (board[row + 1][column] == 0 && row < ROWS - 1) {
 		board[row + 1][column] = board[row][column];
 		board[row][column] = 0;
-		row++;
+		row++ ;
 	}
-	while (board[0][column] == 0) {
+	/*while (board[0][column] == 0) {
 		spawn(column);
 		gravity(0, column);
-	}
+	}*/
 }
 
 void verifyGravity() {
-	for (int i = ROWS - 2; i >= 0; i--) {
+	/*for (int i = ROWS - 2; i >= 0; i--) {
 
 		for (int j = 0; j < COLUMNS; j++) {
 			if (board[i][j] != 0 && board[i + 1][j] == 0) {
 				gravity(i, j);
 			}
+		}
+	}*/
+	int spawnNumber;
+	for (int j = 0; j < COLUMNS; j++) {
+		spawnNumber = 0;
+		for (int i = ROWS - 2; i >= 0; i--) {
+			if (board[i][j] != 0 && board[i + 1][j] == 0) {
+				gravity(i, j);
+			}
+			if(board[i][j] == 0){
+				spawnNumber++;
+			}
+		}
+		for (int i = 0; i < spawnNumber; i++) {
+			spawn(j);
+			gravity(0, j);
 		}
 	}
 }
@@ -274,12 +290,12 @@ void switchItens(int row1, int column1) {
 	checkColumn(column2);
 	checkRow(row1);
 	checkRow(row2);
+	/*checkColumns();
+	checkRows();*/
 	remove();
 	verifyGravity();
 
 }
-
-
 
 void game(int row, int column) {
 	clrscr();
@@ -343,11 +359,16 @@ void game(int row, int column) {
 	}
 }
 
-
-
-
 int main() {
 	build();
+	checkColumns();
+	checkRows();
+	while(!toRemove.empty()){
+		remove();
+		verifyGravity();
+		checkRows();
+		checkColumns();
+	}
 	game(0, 0);
 	textcolor(WHITE);
 	printBoard();
@@ -381,6 +402,4 @@ int main() {
 	║██║
 	╚══╝
 	*/
-
-
 }
